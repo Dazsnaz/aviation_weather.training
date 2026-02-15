@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Weather Academy</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f9; }
+        .card { background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .report-box { background: #2c3e50; color: #ecf0f1; padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 1.2em; border-left: 5px solid #3498db; border-radius: 4px; }
+        .highlight { color: #f1c40f; font-weight: bold; }
+        button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 1em; }
+        button:hover { background: #2980b9; }
+        .quiz-option { display: block; margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .quiz-option:hover { background: #e8f4fd; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>✈️ METAR & TAF Academy</h1>
+        <p>Mastering aviation weather, one code at a time.</p>
+    </header>
+
+    <div id="lesson-1" class="card">
+        <h2>Lesson 1: The Anatomy of a METAR</h2>
+        <p>A <strong>METAR</strong> is a snapshot of current weather. Let's look at this example:</p>
+        <div class="report-box">
+            METAR <span class="highlight">KLAX</span> 121853Z <span class="highlight">25015G25KT</span> 5SM BR FEW020 18/12 A2992
+        </div>
+        <ul>
+            <li><strong>KLAX:</strong> The airport (Los Angeles).</li>
+            <li><strong>25015G25KT:</strong> Wind from 250° at 15 knots, gusting to 25.</li>
+        </ul>
+        <button onclick="showQuiz()">Take the Lesson 1 Quiz</button>
+    </div>
+
+    <div id="quiz-1" class="card hidden">
+        <h2>Quick Quiz</h2>
+        <p>In the report: <code>21010KT</code>, what does the "210" represent?</p>
+        <div class="quiz-option" onclick="checkAnswer(false)">The wind speed is 210 knots</div>
+        <div class="quiz-option" onclick="checkAnswer(true)">The wind is coming FROM 210 degrees</div>
+        <div class="quiz-option" onclick="checkAnswer(false)">The temperature is 21.0 degrees</div>
+        <p id="feedback"></p>
+    </div>
+
+    <script>
+        function showQuiz() {
+            document.getElementById('lesson-1').classList.add('hidden');
+            document.getElementById('quiz-1').classList.remove('hidden');
+        }
+        function checkAnswer(isCorrect) {
+            const feedback = document.getElementById('feedback');
+            if(isCorrect) {
+                feedback.innerHTML = "✅ <strong>Correct!</strong> Wind direction is always the first 3 digits.";
+                feedback.style.color = "green";
+            } else {
+                feedback.innerHTML = "❌ <strong>Try again!</strong> Hint: The first three numbers are the direction.";
+                feedback.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
